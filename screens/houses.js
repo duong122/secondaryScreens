@@ -3,13 +3,20 @@ import { StyleSheet, Text, View, SectionList, FlatList, SafeAreaView, Image} fro
 
 const ListItem = ({ item }) => {
   return (
-    <View style={styles.item}>
+  <View style={styles.item}>
     <Image
       source={item.image}
       style={styles.itemPhoto}
-      resizeMethod='cover' 
+      resizeMethod='resize' 
     />
-    <Text style={styles.itemText}>{item.text}</Text>
+    <View style={styles.textContainer}>
+      <Text style={styles.houseName}>{item.houseName}</Text>
+      <Text style={styles.postedTime}>{item.postedTime}</Text>
+      <View style={styles.rowText}>
+          <Text style={styles.located}>{item.located}</Text>
+          <Text style={styles.price}>{item.price}</Text>
+      </View>
+    </View>
   </View>
   );
 };
@@ -21,7 +28,7 @@ export default function App() {
         <StatusBar style="light"/>
         <SafeAreaView style={{flex: 1}}>
           <SectionList
-            contentContainerStyle={{paddingHorizontal: 10}}
+            contentContainerStyle={{paddingHorizontal: 5}}
             stickySectionHeadersEnabled = { false }
             sections = {SECTIONS}
             renderSectionHeader={({section}) => {
@@ -43,30 +50,45 @@ const SECTIONS = [
     data: [
       {
         key: "1",
-        text: "Item text 1",
+        houseName: "One Mission Bay",
+        postedTime: "14 days ago",
+        located: "San Francisco CA",
+        price: "$2,950,000",
         image: require("../assets/img/andrew-neel-1354776-unsplash.png")
       },
       {
         key: "2",
-        text: "Item text 2",
+        houseName: "One Mission Bay",
+        postedTime: "14 days ago",
+        located: "San Francisco CA",
+        price: "$2,950,000",
         image: require("../assets/img/christopher-jolly-616571-unsplash.png")
      
       },
       {
         key: "3",
-        text: "Item text 3",
+        houseName: "1410 Steiner St",
+        postedTime: "9 days ago",
+        located: "San Francisco CA",
+        price: "$3,279,000",
         image: require("../assets/img/emile-guillemot-1205579-unsplash.png")
         
       },
       {
         key: "4",
-        text: "Item text 4",
+        houseName: "246 Sussex St",
+        postedTime: "2 hours ago",
+        located: "San Francisco CA",
+        price: "$379,000",
         image: require("../assets/img/markus-spiske-37931-unsplash.png")
        
       },
       {
         key: "5",
-        text: "Item text 5",
+        houseName: "436 Eureka St",
+        postedTime: "4 days ago",
+        located: "San Francisco CA",
+        price: "$3,950,000",
         image: require("../assets/img/michael-browning-246513-unsplash.png")
        
       },
@@ -94,6 +116,35 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   item: {
-    margin: 10,
+    margin: 12,
+    flexDirection: 'row'
+  },
+  textContainer: {
+    flex: 1,
+    paddingLeft: 12,
+  },
+  rowText: {
+    flexDirection: 'row',
+  },
+  houseName: {
+    fontFamily: 'Roboto',
+    fontSize: 15,
+    fontWeight: '700',
+    paddingBottom: 8,
+  },
+  postedTime: {
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    fontWeight: '400',
+    paddingBottom: 20,
+  },
+  located: {
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    fontWeight: '700'
+  },
+  price: {
+    position: 'absolute',
+    right: 0
   },
 });
